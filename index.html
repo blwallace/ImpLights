@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Brian Wallace- IMP WakeUP</title>
+        <!-- jquery -->
+        <script src="jquery_v2_1_3.js"></script>
+        <script src="date.js"></script>
+
+        <!-- bootstrap -->
+        <link href="bootstrap_v3_3_2.css" rel="stylesheet">
+<!--        <link href="bootstrap/css/bootstrap-responsive.css" rel="stylesheet">  
+ -->
+        <!-- prettify -->  
+        <link rel="stylesheet" href="prettify/prettify-bootstrap.css">    
+        <script src="prettify/prettify.js"></script> 
+        <!-- momentjs -->  
+        <script src="moment.min.2.5.0.js"></script> 
+        
+        <!-- combodate -->  
+        <script src="combodate.js"></script> 
+
+        <style type="text/css">
+            body {
+                padding-left: 150px;
+                padding-top: 50px;
+                padding-bottom: 30px;
+            }
+        </style>  
+
+    </head>
+    <body>
+<script>
+
+$(document).ready(function(){
+    $(function(){
+        $('#datetime24').combodate();  
+    });
+
+    $("#calculate").click(function(){
+        time = ($('#datetime24').val());
+        unixTime = Date.parse(time).getTime()/1000;
+        now = Math.round((new Date()).getTime() / 1000);
+        diff = unixTime - now;
+        $('#blah').val(diff);
+        console.log(diff);
+
+        
+    });
+
+});
+
+
+</script>   
+    <input type="text" id="datetime24" data-format="DD-MM-YYYY HH:mm" data-template="DD / MM / YYYY     HH : mm" name="datetime" value="29-01-2016 20:30">  
+    <button type="button" class="btn btn-success" id ="calculate">Calculate Time in Future</button>
+<form action="https://agent.electricimp.com/jHlbcLgulEUl">
+  Seconds in future:<br>
+  <input id ="blah" type="text" name="led" ><br>
+   <button type="submit" class="btn btn-default">Submit to IMP</button>
+</form>
+
+<p>Note: Sending 0 or negative numbers will turn off IMP</p>
+
+
+
+    </body>
